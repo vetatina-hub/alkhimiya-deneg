@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Денежный Взлёт · Венера Татина</title>
+<meta name="description" content="Денежный Взлёт — курс Венеры Татиной. 23 урока: находим денежные блоки, снимаем сценарии нехватки, выходим на новый уровень дохода.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"></noscript>
+
+<style>
+  /* Критический CSS — отрисовка героя без шрифтов */
+  .hero-title { font-family: Georgia, serif; }
+  .hero-pain, .hero-eyebrow, .hero-line-text { font-family: Arial, sans-serif; }
+</style>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #c9a96e;
+    --gold-light: #e8d5a3;
+    --deep: #0a0806;
+    --card: #151210;
+    --card2: #1c1712;
+    --text: #e8ddd0;
+    --muted: #9a8a78;
+    --red: #c0392b;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--deep);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 40% at 50% 0%, rgba(201,169,110,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 90% 80%, rgba(201,169,110,0.04) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 70px 24px 90px;
+  }
+
+  .hero-logo-frame {
+    width: 180px; height: 180px; border-radius: 50%;
+    overflow: hidden; margin: 0 auto 32px;
+    border: 1px solid rgba(201,169,110,0.4);
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.05s;
+  }
+  .hero-logo-frame img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block; transform: scale(1.4);
+  }
+  @media (max-width: 480px) {
+    .hero-logo-frame { width: 140px; height: 140px; }
+  }
+
+  .hero-eyebrow {
+    font-size: 9px; letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 40px;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-size: clamp(54px, 13vw, 110px);
+    line-height: 0.95; letter-spacing: -0.01em;
+    color: var(--text); margin-bottom: 0;
+    opacity: 0; animation: fadeUp 1s ease forwards 0.4s;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-line {
+    display: flex; align-items: center; gap: 20px;
+    margin: 36px auto;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.65s;
+  }
+  .hero-line::before, .hero-line::after {
+    content: ''; flex: 1; max-width: 80px;
+    height: 1px; background: var(--gold); opacity: 0.4;
+  }
+  .hero-line-text {
+    font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-pain {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 4.5vw, 28px); font-style: italic;
+    font-weight: 300; line-height: 1.65;
+    color: var(--muted); max-width: 620px; margin: 0 auto 50px;
+    opacity: 0; animation: fadeUp 0.9s ease forwards 0.85s;
+  }
+  .hero-pain strong { color: var(--text); font-style: normal; font-weight: 400; }
+
+  .scroll-hint {
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0; animation: fadeUp 0.8s ease forwards 1.2s;
+  }
+  .scroll-hint::after {
+    content: ''; display: block;
+    width: 1px; height: 44px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 12px auto 0;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain-section {
+    position: relative; z-index: 1;
+    max-width: 700px; margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .section-label {
+    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 40px;
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+  }
+  .section-label::before, .section-label::after {
+    content: ''; flex: 1; max-width: 50px;
+    height: 1px; background: var(--gold); opacity: 0.35;
+  }
+  .pain-list {
+    list-style: none; display: flex; flex-direction: column; gap: 18px;
+  }
+  .pain-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 4vw, 22px); font-weight: 300; font-style: italic;
+    color: var(--text); line-height: 1.5;
+    padding: 20px 24px;
+    border: 1px solid rgba(201,169,110,0.1);
+    border-left: 2px solid rgba(201,169,110,0.4);
+    background: rgba(201,169,110,0.03);
+    text-align: left; border-radius: 2px;
+  }
+  .pain-item::before {
+    content: '—';
+    color: var(--gold); margin-right: 10px; font-style: normal;
+  }
+
+  /* ── PROMISE ── */
+  .promise-section {
+    position: relative; z-index: 1;
+    max-width: 700px; margin: 0 auto;
+    padding: 40px 24px 80px; text-align: center;
+  }
+  .promise-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 5vw, 30px); font-weight: 300;
+    line-height: 1.7; color: var(--text);
+  }
+  .promise-text .gold { color: var(--gold-light); font-style: italic; }
+
+  /* ── PROGRAM ── */
+  .program-section {
+    position: relative; z-index: 1;
+    max-width: 800px; margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+  .program-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 8px;
+  }
+  @media (max-width: 580px) {
+    .program-grid { grid-template-columns: 1fr; }
+  }
+  .program-item {
+    background: var(--card);
+    border: 1px solid rgba(201,169,110,0.12);
+    border-radius: 2px; padding: 22px 20px;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  .program-item:hover { border-color: rgba(201,169,110,0.35); }
+  .program-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300;
+    color: rgba(201,169,110,0.15);
+    position: absolute; top: 10px; right: 16px;
+    line-height: 1;
+  }
+  .program-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 3vw, 19px); font-weight: 400;
+    color: var(--gold-light); margin-bottom: 8px; line-height: 1.3;
+  }
+  .program-desc {
+    font-size: 13px; color: var(--muted); line-height: 1.6;
+  }
+
+  /* ── AUTHOR ── */
+  .author-section {
+    position: relative; z-index: 1;
+    max-width: 860px; margin: 0 auto;
+    padding: 60px 24px 80px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+  @media (max-width: 640px) {
+    .author-section { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .portrait-wrap { position: relative; }
+  .portrait-frame {
+    position: relative; overflow: hidden; border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .portrait-frame::after {
+    content: ''; position: absolute; inset: 0;
+    border: 1px solid rgba(201,169,110,0.25);
+    border-radius: 4px; pointer-events: none; z-index: 2;
+  }
+  .portrait-frame img {
+    width: 100%; height: auto; display: block; object-fit: cover;
+  }
+  .portrait-tl {
+    position: absolute; top: -10px; left: -10px;
+    width: 36px; height: 36px;
+    border-top: 1px solid var(--gold); border-left: 1px solid var(--gold);
+    opacity: 0.5;
+  }
+  .portrait-br {
+    position: absolute; bottom: -10px; right: -10px;
+    width: 36px; height: 36px;
+    border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold);
+    opacity: 0.5;
+  }
+  .author-label {
+    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .author-label::after {
+    content: ''; flex: 1; max-width: 36px;
+    height: 1px; background: var(--gold); opacity: 0.4;
+  }
+  .author-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 6vw, 40px); font-weight: 300;
+    color: var(--text); line-height: 1.1; margin-bottom: 6px;
+  }
+  .author-name em { font-style: italic; color: var(--gold-light); }
+  .author-role {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+  }
+  .author-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 3.2vw, 20px); font-weight: 300;
+    line-height: 1.8; color: var(--muted);
+  }
+  .author-text .hl { color: var(--text); font-style: italic; }
+
+  /* ── PRICE ── */
+  .price-section {
+    position: relative; z-index: 1;
+    max-width: 560px; margin: 0 auto;
+    padding: 40px 24px 100px; text-align: center;
+  }
+  .price-date-box {
+    background: var(--card2);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 2px; padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .price-date-label {
+    font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .price-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 7vw, 44px); font-weight: 300;
+    color: var(--text); line-height: 1.1;
+  }
+  .price-date span { font-style: italic; color: var(--gold-light); }
+  .price-duration {
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-top: 8px;
+  }
+
+  .price-box {
+    background: var(--card2);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 2px; padding: 32px;
+    margin-bottom: 24px;
+  }
+  .price-old {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300;
+    color: var(--muted); text-decoration: line-through;
+    text-decoration-color: rgba(192,57,43,0.7);
+    margin-bottom: 8px;
+  }
+  .price-new {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 12vw, 72px); font-weight: 300;
+    color: var(--gold-light); line-height: 1;
+  }
+  .price-currency {
+    font-size: 18px; color: var(--muted); margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+  .price-note {
+    font-size: 12px; color: var(--muted); margin-top: 12px;
+    font-style: italic;
+  }
+
+  .btn-wa {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 1px;
+    transition: background 0.3s ease, color 0.3s ease;
+    margin-bottom: 16px; display: block;
+  }
+  .btn-wa:hover {
+    background: rgba(201,169,110,0.1);
+    color: var(--text);
+  }
+  .btn-note {
+    font-size: 11px; color: var(--muted); letter-spacing: 0.1em;
+  }
+
+  /* ornament */
+  .ornament {
+    text-align: center; color: var(--gold);
+    font-size: 14px; letter-spacing: 0.3em; opacity: 0.45;
+    position: relative; z-index: 1; padding: 10px 24px 30px;
+  }
+
+  footer {
+    position: relative; z-index: 1; text-align: center;
+    padding: 36px 24px;
+    border-top: 1px solid rgba(201,169,110,0.1);
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--gold); text-decoration: none; margin-left: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo-frame">
+    <img src="logo-denezhniy-vzlet.jpg" alt="Денежный Взлёт">
+  </div>
+  <div class="hero-eyebrow">Курс · Венера Татина</div>
+  <h1 class="hero-title">
+    Денежный
+    <em>Взлёт</em>
+  </h1>
+  <div class="hero-line">
+    <div class="hero-line-text">23 урока · новый уровень дохода</div>
+  </div>
+  <p class="hero-pain">
+    Ты работаешь, стараешься, думаешь о деньгах постоянно —<br>
+    а они всё равно <strong>уходят, не приходят, или вечно не хватает.</strong><br>
+    Это не про цифры. Это про сценарий, который живёт внутри тебя.
+  </p>
+  <div class="scroll-hint">узнать как изменить это</div>
+</section>
+
+<!-- БОЛЬ -->
+<section class="pain-section">
+  <div class="section-label reveal">Узнаёшь себя?</div>
+  <ul class="pain-list">
+    <li class="pain-item reveal">Деньги приходят — но быстро уходят, остаток почти всегда ноль</li>
+    <li class="pain-item reveal">Много работаешь, но дохода недостаточно для той жизни, которую хочешь</li>
+    <li class="pain-item reveal">Хочешь зарабатывать больше — но что-то внутри тормозит</li>
+    <li class="pain-item reveal">Сложно просить и принимать деньги — даже то, что заслужила</li>
+    <li class="pain-item reveal">Чувствуешь, что достойна большего, но не получается выйти на новый уровень</li>
+  </ul>
+</section>
+
+<!-- ОБЕЩАНИЕ -->
+<section class="promise-section">
+  <div class="ornament reveal">✦ · ✦ · ✦</div>
+  <p class="promise-text reveal">
+    В этом курсе мы выйдем за рамки теории.<br>
+    Мы <span class="gold">сделаем полную ревизию твоих денег —</span><br>
+    разберём сценарии, блоки и то, что мешает новым деньгам приходить.<br><br>
+    23 урока — и ты выйдешь с ясностью, привычками и новым внутренним состоянием,<br>
+    из которого <span class="gold">открывается путь к новому уровню дохода.</span>
+  </p>
+</section>
+
+<!-- ПРОГРАММА -->
+<section class="program-section">
+  <div class="section-label reveal">Программа курса</div>
+  <div class="program-grid">
+    <div class="program-item reveal">
+      <div class="program-num">01</div>
+      <div class="program-title">Твой денежный сценарий</div>
+      <div class="program-desc">С чего всё начинается — знакомство со своим денежным паттерном</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">02</div>
+      <div class="program-title">Деньги и детство</div>
+      <div class="program-desc">Что впиталось незаметно — установки, которые работают до сих пор</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">03</div>
+      <div class="program-title">«Мне хватит и малого»</div>
+      <div class="program-desc">Привычка довольствоваться меньшим — и как её заметить</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">04</div>
+      <div class="program-title">Страх больших денег</div>
+      <div class="program-desc">Откуда берётся тревога при мысли о крупных суммах</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">05</div>
+      <div class="program-title">Приходят и сразу уходят</div>
+      <div class="program-desc">Почему деньги не задерживаются — и что с этим делать</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">06</div>
+      <div class="program-title">Вина за лёгкие деньги</div>
+      <div class="program-desc">Снимаем убеждение, что заработать легко — стыдно</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">07</div>
+      <div class="program-title">Находим свой главный блок</div>
+      <div class="program-desc">Диагностика — что именно тормозит именно твой доход</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">08</div>
+      <div class="program-title">«Не могу быть богаче родителей»</div>
+      <div class="program-desc">Работа со сценарием, который держит доход на одном уровне</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">09</div>
+      <div class="program-title">Страх называть свою цену</div>
+      <div class="program-desc">Как перестать занижать стоимость своей работы</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">10</div>
+      <div class="program-title">Скромность против роста</div>
+      <div class="program-desc">Почему прятаться невыгодно — и как начать быть заметной</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">11</div>
+      <div class="program-title">Баланс давать и брать</div>
+      <div class="program-desc">Зрелые отношения с деньгами — без перекоса в любую сторону</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">12</div>
+      <div class="program-title">Просить и принимать</div>
+      <div class="program-desc">Снимаем сложность там, где деньги идут навстречу тебе</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">13</div>
+      <div class="program-title">Долги и кредиты</div>
+      <div class="program-desc">Как выйти из круга — пошаговая внутренняя методика</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">14</div>
+      <div class="program-title">Финансовые привычки, которые держатся</div>
+      <div class="program-desc">Почему привычки бросаются на середине — и как закрепить новые</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">15</div>
+      <div class="program-title">Медитация «Встреча с деньгами»</div>
+      <div class="program-desc">Практика на выстраивание доверительных отношений с деньгами</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">16</div>
+      <div class="program-title">Твоя новая денежная норма</div>
+      <div class="program-desc">Определяем уровень дохода, который становится привычным</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">17</div>
+      <div class="program-title">Планирование без стресса</div>
+      <div class="program-desc">Как выстраивать финансовые цели без внутреннего сопротивления</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">18</div>
+      <div class="program-title">Копить, не срываясь</div>
+      <div class="program-desc">Рабочая система накоплений вместо строгих ограничений</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">19</div>
+      <div class="program-title">Женская энергия и деньги</div>
+      <div class="program-desc">Как принимать доход, оставаясь в мягкости, а не в борьбе</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">20</div>
+      <div class="program-title">Окружение и деньги</div>
+      <div class="program-desc">С кем ты растёшь — и как окружение влияет на доход</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">21</div>
+      <div class="program-title">Цели без выгорания</div>
+      <div class="program-desc">Как достигать финансовых целей без стресса и надрыва</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">22</div>
+      <div class="program-title">Закрепление нового состояния</div>
+      <div class="program-desc">Фиксируем изменения, чтобы не откатиться в старые сценарии</div>
+    </div>
+    <div class="program-item reveal">
+      <div class="program-num">23</div>
+      <div class="program-title">Твой следующий шаг</div>
+      <div class="program-desc">Карта роста — куда двигаться дальше после курса</div>
+    </div>
+  </div>
+</section>
+
+<!-- АВТОР -->
+<section class="author-section">
+  <div class="portrait-wrap reveal">
+    <div class="portrait-tl"></div>
+    <div class="portrait-frame">
+      <img src="фото экспертность.jpeg" alt="Венера Татина" loading="lazy" width="500" height="600">
+    </div>
+    <div class="portrait-br"></div>
+  </div>
+  <div class="reveal">
+    <div class="author-label">Ведущая</div>
+    <div class="author-name">Венера <em>Татина</em></div>
+    <div class="author-role">Мастер Разборов Квантовых Полей</div>
+    <div class="author-text">
+      Работаю на пересечении системных разборов, квантового мышления и глубинной психологии.<br><br>
+      Со своей стороны могу сказать: <span class="hl">деньги — это не про цифры. Это про поле.</span> И это поле можно изменить.
+    </div>
+  </div>
+</section>
+
+<div class="ornament reveal">✦ · ✦ · ✦</div>
+
+<!-- ЦЕНА -->
+<section class="price-section">
+  <div class="section-label reveal">Стоимость</div>
+
+  <div class="price-date-box reveal">
+    <div class="price-date-label">Ценность программы</div>
+    <div class="price-date"><span>1 500 000</span> тенге</div>
+    <div class="price-duration">23 урока · доступ навсегда</div>
+  </div>
+
+  <div class="price-box reveal">
+    <div class="price-old">1 500 000 тенге</div>
+    <div class="price-new">2 990</div>
+    <div class="price-currency">тенге</div>
+    <div class="price-note">Специальная цена для потока</div>
+  </div>
+
+  <a class="btn-wa reveal" href="https://wa.me/77788633191?text=Хочу+начать+Денежный+Взлёт" target="_blank">
+    Начать через WhatsApp
+  </a>
+  <div class="btn-note reveal">Нажми — напишу лично и отвечу на вопросы</div>
+</section>
+
+<footer>
+  <span>© Венера Татина · Академия Квантового Пространства</span>
+  <a href="https://vetatina-hub.github.io">← На главную</a>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
